@@ -1,6 +1,8 @@
 # UPDATE 2021-07-29
 cp ./lib64/python3.9/site-packages/tensorflow/python/keras/utils/generic_utils.py ./lib/python3.9/site-packages/keras/utils/generic_utils.py
+
 tf_upgrade_v2.py --inplace cnn_tf.py
+
 tf_upgrade_v2.py --inplace recognize_gesture.py
 
 
