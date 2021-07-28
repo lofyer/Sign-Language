@@ -7,7 +7,7 @@ import sqlite3
 from keras.models import load_model
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-tf.logging.set_verbosity(tf.logging.ERROR)
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 classifier = tf.estimator.Estimator(model_dir="tmp/cnn_model2", model_fn=cnn_model_fn)
 prediction = None
 model = load_model('cnn_model_keras2.h5')
@@ -30,7 +30,7 @@ def tf_predict(classifier, image):
 	'''
 	global prediction
 	processed_array = tf_process_image(image)
-	pred_input_fn = tf.estimator.inputs.numpy_input_fn(x={"x":processed_array}, shuffle=False)
+	pred_input_fn = tf.compat.v1.estimator.inputs.numpy_input_fn(x={"x":processed_array}, shuffle=False)
 	pred = classifier.predict(input_fn=pred_input_fn)
 	prediction = next(pred)
 	print(prediction)
